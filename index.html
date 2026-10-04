@@ -96,18 +96,51 @@
 
       .treasure{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:14px 16px;margin-bottom:16px;box-shadow:0 10px 30px #0003}
       .treasure-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.map-title{font-family:"Rye",serif;font-size:18px}.coins{font-weight:800;font-size:18px}.map{display:flex;align-items:center;gap:6px;margin-top:12px;overflow:hidden}.map-node{flex:1;height:10px;border-radius:20px;background:#0005;position:relative}.map-node.done{background:#fbbf24}.map-node.current{background:#86efac}.map-emoji{font-size:22px}.hero{display:flex;align-items:center;gap:12px;margin-top:10px}.hero-avatar{font-size:38px;background:#0003;border-radius:16px;padding:6px 12px}.shop-btn{background:#f59e0b!important}.modal{position:fixed;inset:0;background:#0009;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modal.hidden{display:none}.shop{width:min(720px,100%);max-height:85vh;overflow:auto;background:#fff;color:#1f2937;border-radius:24px;padding:22px;box-shadow:0 20px 70px #0008}.shop h2{font-family:"Rye",serif;margin-top:0}.characters{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px}.character{border:2px solid #e5e7eb;border-radius:18px;padding:14px;text-align:center;background:#f8fafc}.character.locked{opacity:.72}.character .face{font-size:48px}.character button{border:0;border-radius:10px;padding:9px 12px;background:#8b5cf6;color:#fff;font-weight:bold;cursor:pointer}.character button:disabled{background:#cbd5e1;color:#475569;cursor:not-allowed}.close-shop{float:right;border:0;background:#fee2e2;border-radius:10px;padding:8px 12px;cursor:pointer}.reward{font-size:14px;opacity:.9;margin-top:6px}
+
+      /* PIRATE TREASURE MAP */
+      body{background:linear-gradient(#123d55 0%,#17617a 38%,#d7a85b 100%);overflow-x:hidden}
+      .pirate-map{position:relative;background:linear-gradient(135deg,#d9b66f,#f0d58b 55%,#c99a4c);border:6px solid #5b351c;border-radius:26px;padding:18px;margin-bottom:18px;box-shadow:0 12px 0 #3b2415,0 20px 45px #0007;overflow:hidden}
+      .pirate-map:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,#fff5 0 2px,transparent 3px),radial-gradient(circle at 75% 70%,#0002 0 3px,transparent 4px);background-size:80px 70px;pointer-events:none}
+      .map-header{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:#3b2415}
+      .map-title{font-family:"Rye",serif;font-size:24px}.map-sub{font-weight:700;font-size:13px}
+      .coins{background:#fff3c4;border:2px solid #8b5a20;padding:8px 13px;border-radius:18px;font-weight:900;color:#5b351c}
+      .route{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:center;margin:18px 4px 8px}
+      .route:before{content:"";position:absolute;left:8%;right:8%;top:43%;border-top:7px dashed #754b25;z-index:0}
+      .stage{position:relative;z-index:1;text-align:center;color:#3b2415}.island{width:72px;height:72px;margin:auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;background:#ead18e;border:4px solid #754b25;box-shadow:0 5px 0 #5b351c;transition:.25s}
+      .stage.locked .island{filter:grayscale(1);opacity:.55}.stage.done .island{background:#ffe082;transform:translateY(-3px)}.stage.current .island{background:#fff2b0;box-shadow:0 0 0 5px #fff8,0 7px 0 #5b351c;transform:scale(1.08)}
+      .stage-name{font-weight:900;margin-top:7px;font-size:13px}.stage small{font-size:11px;font-weight:700}
+      .treasure-chest{position:relative;text-align:center;margin-top:10px;font-size:48px;filter:drop-shadow(0 5px 2px #0005)}
+      .hero{position:relative;display:flex;align-items:center;gap:10px;margin-top:10px;color:#3b2415}.hero-avatar{font-size:36px;background:#fff6;border:2px solid #754b25;border-radius:14px;padding:5px 10px}.reward{font-size:13px;font-weight:700}
+      @media(max-width:600px){.pirate-map{padding:13px}.map-title{font-size:19px}.island{width:52px;height:52px;font-size:28px}.stage-name{font-size:11px}.route{gap:2px}.route:before{border-top-width:5px}.hero-avatar{font-size:30px}}
+      /* PIRATE QUIZ CARD */
+      .quiz-card{position:relative;background:linear-gradient(135deg,#ead08c,#f7e5ad 52%,#d5aa5e);border:5px solid #5b351c;border-radius:24px;padding:22px;color:#3b2415;box-shadow:0 10px 0 #3b2415,0 18px 35px #0006;overflow:hidden}
+      .quiz-card:before{content:"☠  ⚓  🗺️  ⚓  ☠";position:absolute;top:8px;left:0;right:0;text-align:center;opacity:.13;font-size:25px;letter-spacing:22px;pointer-events:none}
+      .stage-banner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#6b421f;color:#ffe9a8;border:3px solid #3b2415;border-radius:16px;padding:10px 14px;margin-bottom:16px;font-family:"Rye",serif;box-shadow:0 4px 0 #3b2415}
+      .stage-banner .stage-icon{font-size:28px}.stage-banner .stage-text{text-align:left;flex:1}.stage-banner .stage-kicker{font-size:11px;opacity:.8;font-family:Arial,sans-serif;font-weight:800;letter-spacing:1px}.stage-banner .stage-name-big{font-size:18px}
+      .quiz-route{display:flex;align-items:center;gap:4px;margin:-2px 0 17px}.quiz-dot{height:8px;flex:1;background:#8a6235;border-radius:10px;opacity:.35}.quiz-dot.active{opacity:1;background:#d18a19}.quiz-dot.done{opacity:1;background:#5c8f3d}
+      .quiz-marker{text-align:center;font-size:12px;font-weight:900;margin-top:5px}.word{color:#3b2415;text-shadow:1px 1px #fff6;margin:16px 0 6px}.pos{color:#79552e}.question{font-family:"Rye",serif;color:#4b2e18;font-size:18px}.answers button{border:3px solid #8a6235;background:#fff3cf;color:#3b2415;box-shadow:0 4px 0 #8a6235;font-weight:700}.answers button:hover{background:#ffe7a3}.answers button.correct{background:#9bd477;border-color:#4f7d36}.answers button.wrong{background:#e9997d;border-color:#8b4330}.feedback{color:#4b2e18}.progress{background:#8a6235}.bar{background:#5c8f3d}.controls button{background:#6b421f;color:#ffe9a8;border:2px solid #3b2415;box-shadow:0 3px 0 #3b2415}.controls button:hover{transform:translateY(-1px)}
+      .menu{margin-bottom:14px}.menu button{background:#6b421f;color:#ffe9a8;border:2px solid #3b2415}.menu button.active{background:#c17b1e;color:#fff3cf}
+      @media(max-width:600px){.quiz-card{padding:15px;border-width:4px}.stage-banner{padding:8px 10px}.stage-banner .stage-name-big{font-size:15px}.stage-banner .stage-icon{font-size:24px}.quiz-route{margin-bottom:13px}.quiz-marker{font-size:10px}.question{font-size:16px}}
+
     </style>
   </head>
   <body>
     <div class="container">
       <h1>Word Quest</h1>
-      <div class="treasure">
-        <div class="treasure-top">
-          <div><div class="map-title">🗺️ TREASURE TRAIL</div><div class="reward">Answer correctly to move along the map and collect coins!</div></div>
-          <div class="coins">🪙 <span id="coins">0</span></div>
+      <div class="pirate-map">
+        <div class="map-header">
+          <div><div class="map-title">🏴‍☠️ PIRATE'S TREASURE MAP</div><div class="map-sub" id="stageMessage">Follow the map, master the words, and find the treasure!</div></div>
+          <div class="coins">🪙 <span id="coins">0</span> coins</div>
         </div>
-        <div class="map"><span class="map-emoji">🏕️</span><div class="map-node" id="map1"></div><div class="map-node" id="map2"></div><div class="map-node" id="map3"></div><div class="map-node" id="map4"></div><span class="map-emoji">💎</span></div>
-        <div class="hero"><div class="hero-avatar" id="heroAvatar">🧭</div><div><b id="heroName">Explorer</b><div class="reward">Your character</div></div></div>
+        <div class="route">
+          <div class="stage current" id="stage1"><div class="island">⛵</div><div class="stage-name">Sail Away</div><small>Start</small></div>
+          <div class="stage locked" id="stage2"><div class="island">🌴</div><div class="stage-name">Mystery Island</div><small>25% complete</small></div>
+          <div class="stage locked" id="stage3"><div class="island">🗿</div><div class="stage-name">Skull Island</div><small>50% complete</small></div>
+          <div class="stage locked" id="stage4"><div class="island">🏝️</div><div class="stage-name">Hidden Cove</div><small>75% complete</small></div>
+          <div class="stage locked" id="stage5"><div class="island">💎</div><div class="stage-name">Treasure!</div><small>100% complete</small></div>
+        </div>
+        <div class="treasure-chest" id="chest">🔒🗝️</div>
+        <div class="hero"><div class="hero-avatar" id="heroAvatar">🧭</div><div><b id="heroName">Explorer</b><div class="reward">Your pirate crew member</div></div></div>
       </div>
       <div class="subtitle">An interactive vocabulary adventure</div>
       <BOLD><h6><div class="subtitle">Band 3, List c, Groups 1-8</div></h6></BOLD>
@@ -121,7 +154,9 @@
         </button>
       </div>
 
-      <div class="card">
+      <div class="quiz-card">
+        <div class="stage-banner"><div class="stage-icon" id="quizStageIcon">⛵</div><div class="stage-text"><div class="stage-kicker" id="quizStageKicker">STAGE 1 OF 5</div><div class="stage-name-big" id="quizStageName">Sail Away</div></div><div id="quizStagePercent">0%</div></div>
+        <div class="quiz-route"><div class="quiz-dot active" id="qdot1"></div><div class="quiz-dot" id="qdot2"></div><div class="quiz-dot" id="qdot3"></div><div class="quiz-dot" id="qdot4"></div><div class="quiz-dot" id="qdot5"></div></div>
         <div class="stats">
           <div class="stat">⭐ Score: <b id="score">0</b></div>
           <div class="stat">❤️ Lives: <b id="lives">3</b></div>
@@ -139,8 +174,8 @@
         </div>
 
         <div id="end" class="end hidden">
-          <h2>good job! Round Complete!</h2>
-          <p id="final"></p>
+          <h2>🏴‍☠️ Treasure Hunt Complete!</h2>
+          <p id="final"></p><div style="font-size:48px">💰💎🏆</div>
           <button
             onclick="restart()"
             style="padding:14px 25px;border:0;border-radius:13px;background:#34d399;font-weight:bold;cursor:pointer"
@@ -186,9 +221,28 @@
       function updateAdventure(){
         document.getElementById('coins').textContent=coins;
         const c=CHARACTERS.find(x=>x.id===selected)||CHARACTERS[0];
-        document.getElementById('heroAvatar').textContent=c.face; document.getElementById('heroName').textContent=c.name;
-        const progress=Math.min(4,Math.floor(index/Math.max(1,deck.length/4)));
-        for(let i=1;i<=4;i++){const n=document.getElementById('map'+i);n.classList.toggle('done',i<=progress);n.classList.toggle('current',i===progress+1);}
+        document.getElementById('heroAvatar').textContent=c.face;
+        document.getElementById('heroName').textContent=c.name;
+        const pct=deck.length ? index/deck.length : 0;
+        const stage=Math.min(4,Math.floor(pct*5));
+        const names=['Sail Away','Mystery Island','Skull Island','Hidden Cove','Treasure!'];
+        const icons=['⛵','🌴','🗿','🏝️','💎'];
+        const messages=['Set sail! Answer the words to leave the harbor!','You reached Mystery Island! Master more words to continue!','Halfway there — beware Skull Island!','The Hidden Cove is close. Keep solving!','🏆 YOU FOUND THE TREASURE! Amazing work!'];
+        for(let i=1;i<=5;i++){
+          const el=document.getElementById('stage'+i);
+          el.classList.toggle('done',i<=stage);
+          el.classList.toggle('current',i===stage+1 && stage<5);
+          el.classList.toggle('locked',i>stage+1);
+          const dot=document.getElementById('qdot'+i);
+          if(dot){dot.classList.toggle('done',i<=stage);dot.classList.toggle('active',i===stage+1 && stage<5);}
+        }
+        const current=stage<5?stage:4;
+        document.getElementById('stageMessage').textContent=messages[current];
+        document.getElementById('chest').textContent=pct>=1?'💰🏆💎':'🔒🗝️';
+        document.getElementById('quizStageIcon').textContent=icons[current];
+        document.getElementById('quizStageKicker').textContent='STAGE '+(current+1)+' OF 5';
+        document.getElementById('quizStageName').textContent=names[current];
+        document.getElementById('quizStagePercent').textContent=Math.round(pct*100)+'%';
       }
       function openShop(){renderShop();document.getElementById('shopModal').classList.remove('hidden')}
       function closeShop(){document.getElementById('shopModal').classList.add('hidden')}
@@ -281,6 +335,7 @@
        speechSynthesis.speak(u);
       }
       function finish(){
+       index=deck.length; updateAdventure();
        document.getElementById('game').classList.add('hidden');
        document.getElementById('end').classList.remove('hidden');
        document.getElementById('final').innerHTML=`You scored <b>${score}</b> points out of ${deck.length*10}  possible.<br>Your best streak this round: <b>${streak}</b>`;
