@@ -174,14 +174,18 @@
         </div>
 
         <div id="end" class="end hidden">
-          <h2>🏴‍☠️ Treasure Hunt Complete!</h2>
-          <p id="final"></p><div style="font-size:48px">💰💎🏆</div>
-          <button
-            onclick="restart()"
-            style="padding:14px 25px;border:0;border-radius:13px;background:#34d399;font-weight:bold;cursor:pointer"
-          >
-            Play Again 🔄
-          </button>
+          <h2 id="endTitle">🏴‍☠️ Treasure Hunt Complete!</h2>
+          <p id="final"></p><div id="endTreasure" style="font-size:48px">💰💎🏆</div>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px">
+            <button id="retryStageBtn" onclick="retryStage()" class="hidden"
+              style="padding:14px 25px;border:0;border-radius:13px;background:#f4c95d;font-weight:bold;cursor:pointer">
+              Restart Stage 🔄
+            </button>
+            <button id="playAgainBtn" onclick="restart()"
+              style="padding:14px 25px;border:0;border-radius:13px;background:#34d399;font-weight:bold;cursor:pointer">
+              Play Again 🔄
+            </button>
+          </div>
         </div>
 
         <div class="controls">
@@ -214,6 +218,7 @@
         {id:'fairy',name:'Treasure Fairy',face:'🧚',cost:300},
         {id:'dragon',name:'Dragon',face:'🐉',cost:450}
       ];
+      let failedStage=0;
       let coins=Number(localStorage.getItem('wordQuestCoins')||0);
       let unlocked=JSON.parse(localStorage.getItem('wordQuestUnlocked')||'["explorer"]');
       let selected=localStorage.getItem('wordQuestCharacter')||'explorer';
@@ -253,9 +258,23 @@
 
       function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
       function start(){
-       deck=shuffle(WORDS); index=0; score=0; lives=3; streak=0; locked=false;
+       deck=shuffle(WORDS); index=0; score=0; lives=3; streak=0; locked=false; failedStage=0;
        document.getElementById('game').classList.remove('hidden');
        document.getElementById('end').classList.add('hidden');
+       document.getElementById('retryStageBtn').classList.add('hidden');
+       document.getElementById('playAgainBtn').classList.remove('hidden');
+       render();
+      }
+      function retryStage(){
+       const stageSize=Math.ceil(deck.length/5);
+       const startIndex=failedStage*stageSize;
+       const endIndex=Math.min(startIndex+stageSize,deck.length);
+       const stageWords=shuffle(deck.slice(startIndex,endIndex));
+       deck.splice(startIndex,stageWords.length,...stageWords);
+       index=startIndex; lives=3; streak=0; locked=false;
+       document.getElementById('end').classList.add('hidden');
+       document.getElementById('game').classList.remove('hidden');
+       document.getElementById('retryStageBtn').classList.add('hidden');
        render();
       }
       function setMode(m){
@@ -265,7 +284,8 @@
        start();
       }
       function render(){
-       if(index>=deck.length || lives<=0){finish();return}
+       if(index>=deck.length){finish(true);return}
+       if(lives<=0){finish(false);return}
        locked=false;
        const x=deck[index];
        document.getElementById('word').textContent=x.w;
@@ -334,11 +354,30 @@
        const u=new SpeechSynthesisUtterance(deck[index].w);u.lang='en-US';u.rate=.8;
        speechSynthesis.speak(u);
       }
-      function finish(){
-       index=deck.length; updateAdventure();
+      function finish(completed=false){
        document.getElementById('game').classList.add('hidden');
        document.getElementById('end').classList.remove('hidden');
-       document.getElementById('final').innerHTML=`You scored <b>${score}</b> points out of ${deck.length*10}  possible.<br>Your best streak this round: <b>${streak}</b>`;
+       const title=document.getElementById('endTitle');
+       const final=document.getElementById('final');
+       const treasure=document.getElementById('endTreasure');
+       const retry=document.getElementById('retryStageBtn');
+       const playAgain=document.getElementById('playAgainBtn');
+       if(completed){
+         index=deck.length; updateAdventure();
+         title.textContent='🏴‍☠️ Treasure Hunt Complete!';
+         final.innerHTML=`You scored <b>${score}</b> points out of ${deck.length*10} possible.<br>🏆 You completed every stage and found the treasure!`;
+         treasure.textContent='💰💎🏆';
+         retry.classList.add('hidden');
+         playAgain.classList.remove('hidden');
+       }else{
+         failedStage=Math.min(4,Math.floor(Math.max(0,index-1)/(deck.length/5)));
+         const names=['Sail Away','Mystery Island','Skull Island','Hidden Cove','Treasure!'];
+         title.textContent='🏝️ Not This Time!';
+         final.innerHTML=`No worries! Try again!<br>You reached <b>${names[failedStage]}</b>, but you need to complete this stage to continue to the treasure.`;
+         treasure.textContent='🗺️🔒🏴‍☠️';
+         retry.classList.remove('hidden');
+         playAgain.classList.remove('hidden');
+       }
       }
       function restart(){start()}
       start();
