@@ -284,8 +284,9 @@
        start();
       }
       function render(){
-       if(index>=deck.length){finish(true);return}
+       // Losing all lives always takes priority over finishing the deck.
        if(lives<=0){finish(false);return}
+       if(index>=deck.length){finish(true);return}
        locked=false;
        const x=deck[index];
        document.getElementById('word').textContent=x.w;
@@ -331,7 +332,7 @@
         score+=10+(streak>=3?5:0);
          coins+=10+(streak>=3?5:0);
          saveProgress();
-        document.getElementById('feedback').textContent=streak>=3?'🔥 Great! Streak: '+streak+'!':'✅ נכון!';
+        document.getElementById('feedback').textContent=streak>=3?'🔥 Great! Streak: '+streak+'!':'✅ Correct!';
        }else{
         btn.classList.add('wrong');lives--;streak=0;
         document.getElementById('feedback').textContent='❌ Not this time. Correct answer: '+correct;
